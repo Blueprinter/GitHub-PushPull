@@ -184,6 +184,7 @@
       return;
     }
     
+    
     choices.idUserID = userID;
     choices.idActionChoice = action;
     choices.idRepoName = repo;
@@ -192,6 +193,8 @@
     choices.idSrcFileID = srcFileID;
     choices.idTargetFileID = trgtFileID;
     choices.idFolderName = fldrForFile;
+    choices.idActionDescription = AlanWells.gv('idActionDescription');
+    
     //console.log('choices: ' + JSON.stringify(choices))
 
     AlanWells.startSpinner();
@@ -208,7 +211,7 @@
   window.AlanWells.actionResult = function(r) {
     var msg;
     
-    console.log('r 211: ' + r)
+    //console.log('r 211: ' + r)
     
     AlanWells.stopSpinner();
     
