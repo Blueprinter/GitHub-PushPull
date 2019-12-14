@@ -11,26 +11,25 @@ try{
 
   map = {
     "idUserID":"userName",
-    "idActionChoice":"commitDescription",
     "idRepoName":"repoName",
     "idFileName":"fileName",
     "idFolderName":"folders",
     "idActionDescription":"commitDescription",
     "idIsPrivateRepo":"private",
-    "idTokenID":"true",
     "idSrcFileID":"srcFileID",
     "idTargetFileID":"trgtFileID"
   }
   
   for (k in po) {
+    //Logger.log('k: ' + k)
     newKey = map[k];
-    if (!newKey) {continue;}
+    //Logger.log('newKey: ' + newKey)
     
+    if (!newKey) {continue;}
+    //Logger.log('po[k]: ' + po[k])
     ao[newKey] = po[k];    
   }
-  
-  Logger.log('ao 32: ' + JSON.stringify(ao))
-  
+
   switch(choice) {
     case 'createFile':
       rslt = createNewFileInExistingRepo_(ao);
