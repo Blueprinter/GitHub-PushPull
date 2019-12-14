@@ -1,0 +1,71 @@
+<script>
+window.AlanWells.startSpinner = function() {
+try{
+  var spnrHeight,thisSpinner,windowHeight,y;
+  //IMPORTANT - Must have file CSS_Spinner for this to work
+  
+  thisSpinner = AlanWells.gebc('stoppedSpinner');
+  //console.log('thisSpinner 8: ' + thisSpinner)
+  
+  if (!thisSpinner) {
+    //cl('thisSpinner.className 2058',thisSpinner.className)
+    //cl('eval','as falsy')
+    return;
+  }
+  
+  $aWellsSets.spnrElmt = thisSpinner;//Put spinner element into window so that the funk to stop the spinner
+  //can get it without needing to look it up
+  
+  if (!window.$aWellsSets.spnrSet) {//Boolean - Did the height for the spinner get set
+    windowHeight = window.innerHeight;//This will get the height of the dialog or sidebar - not device window height
+    //cl('windowHeight 265',windowHeight)
+
+    y = windowHeight / 2;
+
+    //cl('y 2086',y)
+    
+    spnrHeight = 45;//thisSpinner.offsetHeight; - the offsetHeight returns 0 if the spinner isnt yet shown
+    //cl('y spnrHeight 2089',spnrHeight)
+    
+    y = y - spnrHeight;//Dont divide by 2 because the top setting is the top not the middle
+    //cl('y 269',y)
+    
+    thisSpinner.style.top = y.toString() + 'px';
+    
+    window.$aWellsSets.spnrSet = true;
+  }
+  
+  thisSpinner.setAttribute("class", "loader");//This MUST be set before the IF block below to get the el height
+  //console.log('thisSpinner.className 39: ' + thisSpinner.className)
+  thisSpinner.style.display = "inline";
+}catch(e) {
+  console.log('Error: ' + e.message + "\nStack: " + e.stack)
+  
+}
+}
+
+window.AlanWells.stopSpinner = function(spnrElmt) {
+try{
+  //console.log('spnrElmt 50: ' + spnrElmt)
+  
+  if (!spnrElmt) {
+    spnrElmt = $aWellsSets.spnrElmt;
+  }
+  //console.log('spnrElmt 50: ' + spnrElmt)
+  
+  if (!spnrElmt) {
+    spnrElmt = AlanWells.gebc('loader');
+  }
+  
+  if (!spnrElmt) {return;}//The spinner is not spinning
+  
+  spnrElmt.setAttribute("class", "stoppedSpinner");
+
+}catch(e) {
+  console.log('Error ' + e.message)
+  
+}
+}
+</script>
+
+
