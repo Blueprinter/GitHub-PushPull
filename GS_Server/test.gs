@@ -32,5 +32,5 @@ function getFileContent77Test() {
   
   fileContent = getFileContent_(parameters);
   
-  Logger.log('fileContent: ' + fileContent)
+  //Logger.log('fileContent: ' + fileContent)
 }
