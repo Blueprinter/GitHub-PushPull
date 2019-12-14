@@ -17,7 +17,7 @@ try{
   
   */
   
-  Logger.log('po: ' + JSON.stringify(po))
+  //Logger.log('po: ' + JSON.stringify(po))
   
   apiBaseUrl = 'https://api.github.com';//Every url must have this at the beginning
   
@@ -30,7 +30,7 @@ try{
   }
   
   url = apiBaseUrl + "/user/repos";
-  Logger.log('url 22: ' + url)
+  //Logger.log('url 22: ' + url)
 
   myToken = getGitHubToken_();
 
@@ -56,26 +56,26 @@ try{
     payload:payload
   }
   
-  Logger.log('options 43: ' + JSON.stringify(options))
+  //Logger.log('options 43: ' + JSON.stringify(options))
 
   rslt = UrlFetchApp.fetch(url,options);
 
   rspnsCode = rslt.getResponseCode();
-  Logger.log('rspnsCode 59: ' + rspnsCode)
+  //Logger.log('rspnsCode 59: ' + rspnsCode)
   
   if (rspnsCode !== 200 && rspnsCode !== 201) {
     throw new Error('Response coming back from GitHub is: ' + rspnsCode + "\n\n" + rslt.getContentText());   
   }
   
-  Logger.log('rslt.getContentText(): ' + rslt.getContentText())
-  Logger.log('typeof rslt: ' + typeof rslt)
+  //Logger.log('rslt.getContentText(): ' + rslt.getContentText())
+  //Logger.log('typeof rslt: ' + typeof rslt)
   
   data = JSON.parse(rslt);//Even though the returned value is an object it must be parsed into JSON
   
-  Logger.log('data' + JSON.stringify(data))
+  //Logger.log('data' + JSON.stringify(data))
   return true
 }catch(e) {
-  Logger.log("Error: " + e.message + "\nStack: " + e.stack)
+  //Logger.log("Error: " + e.message + "\nStack: " + e.stack)
   //errorHandling(e);//Run centralized error handling function
   return e;
 }
