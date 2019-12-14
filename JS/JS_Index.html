@@ -1,0 +1,225 @@
+<script>
+  if (!window.AlanWells) {
+    window.AlanWells = {};
+    window.$aWellsSets = {};
+  }
+
+  window.AlanWells.gv = function(id) {
+    return document.getElementById(id).value;
+  }
+
+  window.AlanWells.ge = function(id) {
+    return document.getElementById(id);
+  }
+  
+  window.AlanWells.gebc = function(className) {
+    var el;
+    el = document.getElementsByClassName(className);
+    return el[0];
+  }
+  
+  window.AlanWells.show = function(id) {
+    //console.log('id: 16 ' + id)
+    document.getElementById(id).classList.remove("w3-hide");
+  }
+  
+  window.AlanWells.hide = function(id) {
+    var el;
+    //console.log('id: 16 ' + id)
+    el = document.getElementById(id);
+    el.classList.add("w3-hide");
+  }
+  
+  window.AlanWells.clearMsgs = function() {
+    var allInputIDs,i,id,L;
+    
+    //console.log('po: ' + JSON.stringify(po))
+    AlanWells.hide('idMsgToUser');    
+    
+    allInputIDs = ['idUserID','idActionChoice','idRepoName','idFileName','idFolderName',
+    'idActionDescription','idSrcFileID','idTargetFileID'];
+    //console.log('allInputIDs: ' + allInputIDs)
+    
+    L = allInputIDs.length;
+    
+    for (i=0;i<L;i++) {
+      id = allInputIDs[i];
+      //console.log('id: ' + id)
+      document.getElementById(id).style.background = "white";
+    }
+  }
+  
+  window.AlanWells.actionWasChoosen = function(thiz) {
+    AlanWells.clearMsgs();
+  }
+
+  window.AlanWells.showMsgToUser = function(po) {
+      var msgEl;
+      
+      AlanWells.stopSpinner();
+      
+      msgEl = document.getElementById('idMsgToUser');
+      
+      msgEl.textContent = po.msg;
+      msgEl.classList.add("w3-yellow");
+      msgEl.classList.remove("w3-hide");
+  }
+  
+  window.AlanWells.showHelp = function(thiz) {
+    AlanWells.show('idHelpTxt');
+    AlanWells.hide('idMainContent');
+  }
+  
+  window.AlanWells.hideHelp = function(thiz) {
+    AlanWells.hide('idHelpTxt');
+    AlanWells.show('idMainContent');
+  }
+  
+  window.AlanWells.commitToGitHub = function(po) {
+  try{
+    var action,choices,fileName,fldrForFile,i,id,inputError,inputErrorMsg,L,repo,
+    srcFileID,trgtFileID,tokenID,userID;
+  
+    inputError = function(msg,id) {
+      var msgEl;
+      document.getElementById(id).style.background = "red";
+      //console.log(msg)
+      AlanWells.showMsgToUser({msg:msg});
+    }
+
+    AlanWells.clearMsgs();
+    
+    AlanWells.showMsgToUser({msg:"Running!"});
+    
+    choices = {};
+    
+    userID = AlanWells.gv('idUserID');
+    
+    if (!userID) {
+      inputErrorMsg = 'no action';
+      inputError(inputErrorMsg,'idUserID');
+      return;
+    }
+    
+    action = AlanWells.gv('idActionChoice');
+    //console.log('action 82: ' + action)
+    
+    if (!action) {
+      inputErrorMsg = 'Please choose an action';
+      inputError(inputErrorMsg,'idActionChoice');
+      return;
+    }
+    
+    switch(action) {
+      case 'pushProject':
+        srcFileID = AlanWells.gv('idSrcFileID');
+        //console.log('srcFileID 93: ' + srcFileID)
+        
+        if (!srcFileID) {
+          inputErrorMsg = 'Need an Apps Script source file ID';
+          inputError(inputErrorMsg,'idSrcFileID');
+          return;
+        }
+      
+        break;
+    
+      case 'updateFile':
+        srcFileID = AlanWells.gv('idSrcFileID');
+        //console.log('srcFileID 105: ' + srcFileID)
+        
+        if (!srcFileID) {
+          inputErrorMsg = 'Need an Apps Script source file ID';
+          inputError(inputErrorMsg,'idSrcFileID');
+          return;
+        }
+      
+        break;
+        
+      case 'pullRepo':
+        trgtFileID = AlanWells.gv('idTargetFileID');
+      
+        if (!trgtFileID) {
+          inputErrorMsg = 'Need an Apps Script target file ID';
+          inputError(inputErrorMsg,'idTargetFileID');
+          return;
+        }
+        break;
+      case'dletRepo':
+        //console.log('for delete')
+      
+        if (!po) {
+          document.getElementById('idCnfrmDltDiv').style.display = "inline-block";
+          AlanWells.showMsgToUser({msg:"Confirm Repo Deletion - all files in repo get deleted!"});
+          return;
+        }
+        break;
+    }
+
+    repo = AlanWells.gv('idRepoName');
+    
+    if (!repo) {
+      inputErrorMsg = 'no repo name';
+      inputError(inputErrorMsg,'idRepoName');
+      return;
+    }
+    
+    fileName = AlanWells.gv('idFileName');
+    
+    if (!fileName && (action !== 'pushProject' && action !== 'newRepo' && 
+      action !== 'dletRepo' && action !== 'dletAllFilesInRepo')) {
+      //If the action is to push all the files in an entire project or update all the files in an entire project
+      //or to make a new repo - then a file name is not needed
+      inputErrorMsg = 'no file name';
+      inputError(inputErrorMsg,'idFileName');
+      return;
+    }
+    
+    fldrForFile = AlanWells.gv('idFolderName');
+    
+    tokenID = AlanWells.gv('idTokenID');
+    
+    if (tokenID === 'false') {
+      inputErrorMsg = 'no file name';
+      inputError(inputErrorMsg,'idTokenID');
+      return;
+    }
+    
+    choices.idUserID = userID;
+    choices.idActionChoice = action;
+    choices.idRepoName = repo;
+    choices.idFileName = fileName;
+    choices.idTokenID = tokenID;
+    choices.idSrcFileID = srcFileID;
+    choices.idTargetFileID = trgtFileID;
+    choices.idFolderName = fldrForFile;
+    //console.log('choices: ' + JSON.stringify(choices))
+
+    AlanWells.startSpinner();
+    
+    google.script.run
+      .withSuccessHandler(AlanWells.actionResult)
+      .doUserChoice(choices);
+      
+  }catch(e){
+    AlanWells.showMsgToUser({msg:"Error! " + e.message});  
+  }
+  }
+  
+  window.AlanWells.actionResult = function(r) {
+    var msg;
+    
+    console.log('r 211: ' + r)
+    
+    AlanWells.stopSpinner();
+    
+    if (r !== true) {
+      msg = "Error on the Server!" + "\n" + r;
+    } else {
+      msg = "Server Code Completed!";
+    }
+    
+    AlanWells.showMsgToUser({msg:msg})
+  }
+</script>
+
+
