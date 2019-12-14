@@ -1,0 +1,43 @@
+<style>
+/*
+  v3 29 19 924am
+  top calc
+  v1 4 19 1042am
+  stoppedSpinner left: 38%
+  v10 13 18 406pm - class spinner loader - remove margin settings and top changed to 50px
+  v 6 12 18 302 pm - put 3 classes together for fixed position
+  v 6 12 18 145 pm - Add .spinner class 
+  Version Mar 31 2018 603PM 
+*/
+
+.spinner, .loader, .stoppedSpinner {
+  position: fixed;
+  top: calc(50% - 45px); /*The spinner is maybe 45px tall The top settings is adjusted by the 
+  javascript in AlanWells.startSpinner this is an initial setting */ 
+  left: calc(50% - 45px);
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+</style>
+
