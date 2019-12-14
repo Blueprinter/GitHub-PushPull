@@ -1,0 +1,51 @@
+<div class="w3-container">
+
+<h2>Instructions</h2>
+
+<button onclick="AlanWells.hideHelp();">Hide Help</button>
+
+<p>You need to do some set-up in order for this app to work</p>
+
+<p>This app needs to get contents out of your Apps Script file in order to send that content to GitHub.
+You must enable the Apps Script API.  The Apps Script API can only be enabled for your account through your
+GCP dashboard.  https://console.cloud.google.com/home/dashboard
+You must associate a GCP (Google Cloud Project) project with this Apps Script project, and enable the Apps 
+Script API for the GCP project.  The Apps Script API is what gets the content out of your Apps Script file.
+Step by step instructions are provided below:
+</p>
+
+<ul class="w3-ul">    
+  <li>In order for this Apps Script project to access your Apps Script files in your Google Drive, you must do
+    the following.</li>
+    
+  <li>1) If you don't have an existing GCP project, then you must create a new GCP project.
+    The GCP project that you associate with this Apps Script project, must have the Apps Script API enabled.</li>
+  <li>There are two types of GCP projects for Apps Script, "default" and "standard."</li>
+  <li>The default GCP project is automatically assigned to every Apps Script project.  You can't see the default GCP
+  project.  You can't access the default GCP project, and you can't enable any APIs in it.  So, you need to create a 
+  "standard" GCP project and link it (associate it) to your Apps Script project.</li>
+  <li>Go to your Google Cloud Platform - https://console.cloud.google.com/home/dashboard?authuser=0</li>
+  <li>Navigation menu - IAm and Admin - Manage Resources</li>
+  <li>If you don't have an organization - then create an organization</li>
+  <li>Create Project</li>
+  <li>Get the GCP Project Number</li>
+
+  <li>2) From coded editor</li>
+  <li>Resoures Menu - Cloud Platform Project</li>
+  <li>Enter Project Number</li>
+  <li>Set Project</li>
+       
+  <li>3) Open GCP project</li>
+  <li>APIs and Services</li>
+  <li>Enable APIs and Services</li>
+  <li>Enable the Apps Script API</li>
+    
+  <li>Run the code</li>
+       
+</ul>
+    
+<div>To see documentation: https://developers.google.com/apps-script/api/concepts</div>
+<div>https://developers.google.com/apps-script/api/how-tos/enable#using_the_apps_script_api_in_your_app</div>
+
+  <br/>
+</div>
