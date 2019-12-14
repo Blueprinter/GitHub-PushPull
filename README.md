@@ -1,5 +1,7 @@
 # GitHub-PushPull
 
+If you find a bug, or want to contribute to this code I will consider implementing suggested changes.
+
 This Apps Script WebApp will execute multiple different GitHub commits.
 For example, it will get all the contents of an Apps Script file and push all the files to a GitHub repo.
 
