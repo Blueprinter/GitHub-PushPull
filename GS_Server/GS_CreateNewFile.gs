@@ -85,13 +85,13 @@ try{
   //Logger.log('rslt.getContentText(): ' + rslt.getContentText())
   //Logger.log('typeof rslt: ' + typeof rslt)
   
-  Logger.log('data.content ' + JSON.stringify(data.content))
-  Logger.log('data.content.url ' + data.content.url)
-  Logger.log('data.commit.tree ' + JSON.stringify(data.commit.tree))
+  //Logger.log('data.content ' + JSON.stringify(data.content))
+  //Logger.log('data.content.url ' + data.content.url)
+  //Logger.log('data.commit.tree ' + JSON.stringify(data.commit.tree))
   
   return true;
 }catch(e) {
-  Logger.log("Error: " + e.message)
+  //Logger.log("Error: " + e.message)
   //errorHandling(e);//Run centralized error handling function
   return e;
 }
