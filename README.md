@@ -5,6 +5,8 @@ For example, it will get all the contents of an Apps Script file and push all th
 
 You need to do some set-up in order for this app to work
 
+To copy the code directly from an Apps Script file go to: https://drive.google.com/open?id=1aKVzZ2gcVmcqMC3L_zyPBti_VPph1beNMXDw4u6wjYp_Qs6piSJj-dyF
+
 This app needs to get contents out of your Apps Script file in order to send that content to GitHub. You must enable the Apps Script API. The Apps Script API can only be enabled for your account through your GCP dashboard. https://console.cloud.google.com/home/dashboard You must associate a GCP (Google Cloud Project) project with this Apps Script project, and enable the Apps Script API for the GCP project. The Apps Script API is what gets the content out of your Apps Script file. Step by step instructions are provided below:
 
 In order for this Apps Script project to access your Apps Script files in your Google Drive, you must do the following.
