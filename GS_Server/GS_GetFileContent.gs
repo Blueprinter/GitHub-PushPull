@@ -78,7 +78,7 @@ try{
   }
 
   if (po.getJustSHA) {
-    Logger.log('data.sha 81: ' + data.sha)
+    //Logger.log('data.sha 81: ' + data.sha)
     return data.sha;
   } else if (po.returnObject) {
     return data;
@@ -91,7 +91,7 @@ try{
     return fileContent;
   }
 }catch(e) {
-  Logger.log("Error 94: " + e.message)
+  //Logger.log("Error 94: " + e.message)
   //errorHandling(e);//Run centralized error handling function
   return e;
 }
