@@ -100,14 +100,14 @@ try{
     payload: payload
   }
   
-  Logger.log('url 103: ' + url)
-  Logger.log('options 104: ' + JSON.stringify(options))
+  //Logger.log('url 103: ' + url)
+  //Logger.log('options 104: ' + JSON.stringify(options))
   
   rslt = UrlFetchApp.fetch(url,options);
   data = JSON.parse(rslt);//Even though the returned value is an object it must be parsed into JSON
   
   rspnsCode = rslt.getResponseCode();
-  Logger.log('rspnsCode 110: ' + rspnsCode)
+  //Logger.log('rspnsCode 110: ' + rspnsCode)
   
   if (rspnsCode !== 200 && rspnsCode !== 201) {
     throw new Error('Response coming back from GitHub is: ' + rspnsCode + "\n\n" + data.message);
@@ -122,7 +122,7 @@ try{
   
   return true;
 }catch(e) {
-  Logger.log("Error: " + e.message)
+  //Logger.log("Error: " + e.message)
   //errorHandling(e);//Run centralized error handling function
   return e;
 }
