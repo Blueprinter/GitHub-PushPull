@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_blank">
+    <?!= HtmlService.createHtmlOutputFromFile('CSS_W3').getContent(); ?>
+    <?!= HtmlService.createHtmlOutputFromFile('CSS_Spinner').getContent(); ?>
+  </head>
+  <body class="w3-dark-grey">
+    <div class="w3-container w3-teal">
+      <h1>Apps Script to GitHub</h1>
+    </div>
+    
+    <div id="idMainContent" class="w3-content w3-panel w3-card-4 w3-grey"><!-- w3-content centers it -->
+      <h2>Action Configuration</h2>
+      
+      <input id="idUserID" type="text" <?!= getUserName_() ?>> GitHub User ID (Sign-In ID)
+      <br/>
+      <input id="idTokenID" type="text" <?!= isTokenAvailable_() ?>> Is Token Available? https://github.com/settings/tokens Generate new token
+    
+      <br/>
+      <br/>
+  
+      <select id="idActionChoice" onchange="AlanWells.actionWasChoosen(this)">
+        <option value="">Choose a GitHub action</option>
+        <option value="createFile">Create one new file</option>
+        <option value="updateFile">Update (Push) one file</option>
+        <option value="dletFile">Delete one file</option>
+        <option value="dletAllFilesInRepo">Delete all files in Repo</option>
+        <option value="newRepo">Create new repository</option>
+        <option value="dletRepo">Delete repository - Currently not available</option>
+        <option value="pushProject">Push entire Apps Script file to GitHub</option>
+        <option value="pullRepo">Pull entire repo from GitHub to Apps Script file</option>
+        <option value="pullOneFile">Pull one file from GitHub to Apps Script file</option>
+      
+      </select> Choose the Action
+      <br/>
+      <br/>
+      
+      <input id="idSrcFileID" type="text" placeholder="SOURCE - PUSH to GitHub - Apps Script file ID" size="100">
+      <br/>
+      <input id="idTargetFileID" type="text" placeholder="TARGET - PULL - Apps Script file ID" size="100">
+    
+      <br/>
+      <div id="idMsgToUser" class="w3-panel w3-center w3-card-4 w3-hide"></div>
+      <br/>
+    
+      <input id="idRepoName" type="text" placeholder="Repo Name"> Repository Name<br/>
+      <input id="idFileName" type="text" placeholder="File Name"> File Name<br/>
+      <input id="idFolderName" type="text" placeholder="Folder"> Folder that file is in - If there is a folder - Needed to add, update or delete a single file<br/>
+      <input id="idActionDescription" type="text" placeholder="Description"> Description of this Action - Not Needed for Pulls<br/>
+      <br/>
+      <input id="idIsPrivateRepo" type="checkbox"> Is Repo Private? - If true then check<br/>
+    
+      <br/>
+    
+      <button onclick="AlanWells.commitToGitHub()">Run</button>
+      <button onclick="AlanWells.showHelp();">Help</button>
+      
+      <br/>
+      <br/>
+      
+       <div class="stoppedSpinner"></div>
+    </div><!-- End of main content -->
+
+    <div id="idCnfrmDltDiv" class="w3-panel w3-red" style="display:none;">
+      <button id="idConfirmDeleteBtn" onclick="AlanWells.commitToGitHub({dlet:true})">Deleting a repo deletes everything in it - Confirm by clicking this Button</button>
+      <p>Deleting a repo requires admin access - If OAuth is used, the delete_repo scope is required
+      This app currently does not use OAuth</p>
+    </div>
+          
+    <div id="idHelpTxt" class="w3-container w3-hide">
+      <?!= HtmlService.createHtmlOutputFromFile('Instructions').getContent(); ?>
+    </div>
+    
+    <?!= getSkrpt_(['JS_Index','JS_Spinner']) ?>
+    
+
+  </body>
+</html>
+
+
