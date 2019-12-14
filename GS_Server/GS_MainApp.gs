@@ -29,7 +29,7 @@ try{
     ao[newKey] = po[k];    
   }
   
-  Logger.log('ao 32: ' + ao)
+  Logger.log('ao 32: ' + JSON.stringify(ao))
   
   switch(choice) {
     case 'createFile':
@@ -64,28 +64,28 @@ try{
       break;
   }
   
-  Logger.log('rslt 67: ' + rslt)
+  //Logger.log('rslt 67: ' + rslt)
   
   if (rslt !== true) {
     //check if rslt is an error object from a fetch
-    Logger.log('typeof rslt: ' + typeof rslt)
+    //Logger.log('typeof rslt: ' + typeof rslt)
     try {
       var rCode = rslt.getResponseCode();
     }catch(e){
       //do nothing
     }
-    Logger.log('rCode: ' + rCode)
+    //Logger.log('rCode: ' + rCode)
     
     if (rCode) {//Its an error from a fetch call
       rslt = JSON.parse(rslt);//Must parse it to json because the object is not JSON
     }
     
-    Logger.log('should stringify')
+    //Logger.log('should stringify')
     rslt = JSON.stringify(rslt);
   }
   return rslt;
 }catch(e) {
-  Logger.log('Error: ' + e.message + "\nStack: " + e.stack)
+  //Logger.log('Error: ' + e.message + "\nStack: " + e.stack)
   return e;
 }
 }
