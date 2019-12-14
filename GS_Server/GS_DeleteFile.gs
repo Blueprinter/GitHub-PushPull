@@ -53,7 +53,7 @@ try{
   }
   
   url = apiBaseUrl + "/repos/" + po.userName + "/" + po.repoName + "/contents/" + path;
-  Logger.log('url 44: ' + url)
+  //Logger.log('url 44: ' + url)
 
   myToken = getGitHubToken_();
   
@@ -86,14 +86,14 @@ try{
   //Logger.log('rslt.getContentText() 69: ' + rslt.getContentText())
   
   rspnsCode = rslt.getResponseCode();
-  Logger.log('rspnsCode 81: ' + rspnsCode)
+  //Logger.log('rspnsCode 81: ' + rspnsCode)
   
   data = JSON.parse(rslt);//Even though the returned value is an object it must be parsed into JSON
-  Logger.log('data 84 ' + JSON.stringify(data))
+  //Logger.log('data 84 ' + JSON.stringify(data))
   
   if (rspnsCode !== 200 && rspnsCode !== 201) {
     var msg = data.message;
-    Logger.log('msg 88: ' + msg)
+    //Logger.log('msg 88: ' + msg)
     
     if (rspnsCode === 403) {//The user is forbidden from deleting a repo
       throw new Error('User is forbidden from deleting a repo: ' + rspnsCode + " -- " + msg);
@@ -104,7 +104,7 @@ try{
 
   return true
 }catch(e) {
-  Logger.log(e.message)
+  //Logger.log(e.message)
   //errorHandling(e);//Run centralized error handling function
   return e;
 }
