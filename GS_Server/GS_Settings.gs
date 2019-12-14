@@ -4,7 +4,7 @@ function getMyGitHubInfo_(k) {
   var o;
   
   o = {
-    userName:'blueprinter',//Your user name
+    userName:'EnterGitHubSignInIDHere',//Your user name
   }
   
   if (k) {
