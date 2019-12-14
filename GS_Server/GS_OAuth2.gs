@@ -57,7 +57,7 @@ var STATE_PARAMETER_LOCATION = {
  * @return {Service_} The service object.
  */
 function createService(serviceName) {
-  Logger.log('serviceName 60: ' + serviceName)
+  //Logger.log('serviceName 60: ' + serviceName)
   
   
   return new Service_(serviceName);
@@ -152,7 +152,7 @@ Service_.LOCK_EXPIRATION_MILLISECONDS_ = 30 * 1000;
  * @return {Service_} This service, for chaining.
  */
 Service_.prototype.setAuthorizationBaseUrl = function(authorizationBaseUrl) {
-  Logger.log('setAuthorizationBaseUrl ran')
+  //Logger.log('setAuthorizationBaseUrl ran')
   this.authorizationBaseUrl_ = authorizationBaseUrl;
   return this;
 };
