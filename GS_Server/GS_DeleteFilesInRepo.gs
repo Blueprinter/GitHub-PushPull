@@ -24,7 +24,7 @@ try{
       //Logger.log('ao2 24: ' + JSON.stringify(ao2))
       whatHappened = deleteOneFile_(ao2);
       if (whatHappened !== true) {
-        Logger.log('whatHappened 27: ' + whatHappened)
+        //Logger.log('whatHappened 27: ' + whatHappened)
         continue;//Dont break because the code may be able to do some more processing
       }
     }
@@ -62,7 +62,7 @@ try{
       rslt = processAllFilesInOnePath(innerData);
       
       if (rslt !== true) {
-        Logger.log('whatHappened 65: ' + JSON.stringify(rslt))
+        //Logger.log('whatHappened 65: ' + JSON.stringify(rslt))
         errorHandling_(rslt);
         continue;
       }
@@ -70,23 +70,23 @@ try{
       rslt = deleteOneFile_(ao);
       
       if (rslt !== true) {
-        Logger.log('whatHappened 73: ' + JSON.stringify(rslt))
+        //Logger.log('whatHappened 73: ' + JSON.stringify(rslt))
         errorHandling_(rslt);
         continue;
       }
     }
   }
   
-  Logger.log('rslt 80: ' + rslt)
+  //Logger.log('rslt 80: ' + rslt)
   if (rslt !== true) {
     rslt = rslt.message;
   }
   
-  Logger.log('rslt 85: ' + rslt)
+  //Logger.log('rslt 85: ' + rslt)
   
   return rslt;
 }catch(e){
-  Logger.log('Error 89: ' + e.message + "\nStack: " + e.stack)
+  //Logger.log('Error 89: ' + e.message + "\nStack: " + e.stack)
   errorHandling_(e);
   return e;
 }
